@@ -17,27 +17,36 @@
             <div class="button-box">
                 <div id="btn"></div>
                 <button type="button" class="toggle-btn" onclick="login()">LogIn</button>
-                <button type="button" class="toggle-btn" onclick="signin()">SignIn</button>
+                <button type="button" class="toggle-btn" onclick="signup()">SignUp</button>
             </div>
             <div class="social-icons">
                 <img src="google.png">
-                <!-- <img src="apple.jpg"> -->
                 <img src="apple2.jpg">
-
             </div>
+
             <form id="login" class="input-group">
                 <input type="text" class="input-field" placeholder="User_Id" required>
-                <input type="text" class="input-field" placeholder="Password" required>
+
+                <div class="password-container">
+                    <input type="password" id="loginPassword" class="input-field" placeholder="Password" required>
+                    <img src="eye.png" alt="Toggle" class="eye-icon" onclick="togglePassword('loginPassword', this)">
+                </div>
+
                 <input type="checkbox" class="check-box"><span>Remember Password</span>
-                <button type="submit" class = "submit-btn">LogIn</button>
+                <button type="submit" class="submit-btn">LogIn</button>
             </form>
 
-            <form id="signin" class="input-group">
+            <form id="signup" class="input-group">
                 <input type="text" class="input-field" placeholder="User_Id" required>
-                <input type="email" class="input-field" placeholder="User_Id" required>
-                <input type="text" class="input-field" placeholder="Password" required>
+                <input type="email" class="input-field" placeholder="Email" required>
+
+                <div class="password-container">
+                    <input type="password" id="signupPassword" class="input-field" placeholder="Password" required>
+                    <img src="eye.png" alt="Toggle" class="eye-icon" onclick="togglePassword('signupPassword', this)">
+                </div>
+
                 <input type="checkbox" class="check-box"><span>I agree to the terms and condition</span>
-                <button type="submit" class = "submit-btn">SignIn</button>
+                <button type="submit" class="submit-btn">SignIn</button>
             </form>
         </div>
     </div>
@@ -48,11 +57,11 @@
 
     <script>
         var x = document.getElementById("login");
-        var y = document.getElementById("signin");
+        var y = document.getElementById("signup");
         var z = document.getElementById("btn");
 
 
-        function signin(){
+        function signup(){
             x.style.left = "-400px";
             y.style.left = "50px";
             z.style.left = "110px";
@@ -62,6 +71,17 @@
             x.style.left = "50px";
             y.style.left = "450px";
             z.style.left = "0px";
+        }
+
+        function togglePassword(id, icon) {
+            const input = document.getElementById(id);
+            if (input.type === "password") {
+                input.type = "text";
+                icon.src = "eye-off.png"; // optional: replace with a different icon
+            } else {
+                input.type = "password";
+                icon.src = "eye.png";
+            }
         }
            
     </script>
