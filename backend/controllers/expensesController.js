@@ -1,7 +1,8 @@
 const Expenses = require('../models/expensesModels');
 exports.getAllExpenses = async(req,res) => {
+    const userId = req.user.id;
     try{
-        const expenses = await Expenses.find();
+        const expenses = await Expenses.find({user:userId});
         return res.status(200).send({expenses:expenses})
     }catch(error){
         console.error(`Error fetching all expense`,error.message)
@@ -26,8 +27,10 @@ exports.getExpenseById = async(req,res) => {
 
 exports.createExpense = async(req,res) => {
      const {item,amount,category,date} = req.body;
+     const userId = req.user.id;
+     console.log("Creating expense for user:", userId); // 🐞 debug
     try{
-        const newExpense = new Expenses({item, amount, category, date})
+        const newExpense = new Expenses({item, amount, category, date,user: userId})
         const savedExpense = await newExpense.save()
         return res.status(201).send({newExpense:savedExpense})
     }catch(error){
