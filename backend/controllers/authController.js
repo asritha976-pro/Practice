@@ -18,7 +18,7 @@ exports.signup = async(req,res) => {
             email: newUser.email,
             password: hashedPassword,
         })
-        user.save()
+        await user.save()
         return res.status(201).send({message:'Successfully registered!'})
     }catch(error){
         console.error('Error registering user:',error.message);
@@ -36,7 +36,7 @@ exports.login  =async(req,res) => {
     if(!isPasswordCorrect){
         return res.status(401).send({error:'Invalid email or passwordd'});
     }
-    const payload = {id:existingUser._id,username:existingUser.username /*role : existingUser.role */}
+    const payload = {id:existingUser._id,username:existingUser.username, role : existingUser.role }
     jwt.sign(
         payload,
         process.env.JWT_SECRET,
