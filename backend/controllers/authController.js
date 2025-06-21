@@ -17,6 +17,7 @@ exports.signup = async(req,res) => {
             username: newUser.username,
             email: newUser.email,
             password: hashedPassword,
+            balance : newUser.balance
         })
         await user.save()
         return res.status(201).send({message:'Successfully registered!'})

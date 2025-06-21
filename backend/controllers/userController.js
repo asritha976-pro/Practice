@@ -10,7 +10,7 @@ exports.getAllUsers = async(req,res) => {
     }
 }
 
-exports.setInitialBalance = async(req,res) => {
+exports.modifyInitialBalance = async(req,res) => {
     try{
         const userId = req.user.id;
         const {balance} = req.body;

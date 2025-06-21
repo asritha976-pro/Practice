@@ -13,6 +13,10 @@ const expenseSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    paymentType:{
+        type: String,
+        default: "UPI",
+    },
     category:{
         type: String,
         required: true,
